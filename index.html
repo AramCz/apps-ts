@@ -4,23 +4,117 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apps Touch Screen</title>
+
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             font-family: Arial, sans-serif;
             background-color: #f0f0f0;
             text-align: center;
-            padding: 50px;
+            padding: 40px 20px;
         }
+
         h1 {
             color: #333;
+            margin-bottom: 15px;
         }
+
         p {
             color: #666;
+            margin-bottom: 40px;
+            font-size: 18px;
+        }
+
+        .carousel {
+            width: 600px;
+            max-width: 100%;
+            height: 340px;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            background: white;
+        }
+
+        .slides {
+            display: flex;
+            width: 600%;
+            height: 100%;
+            animation: slideshow 24s infinite;
+        }
+
+        .slides img {
+            width: 16.666%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        @keyframes slideshow {
+            0%, 14% {
+                transform: translateX(0%);
+            }
+
+            16%, 30% {
+                transform: translateX(-16.666%);
+            }
+
+            32%, 46% {
+                transform: translateX(-33.333%);
+            }
+
+            48%, 62% {
+                transform: translateX(-50%);
+            }
+
+            64%, 78% {
+                transform: translateX(-66.666%);
+            }
+
+            80%, 94% {
+                transform: translateX(-83.333%);
+            }
+
+            100% {
+                transform: translateX(0%);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .carousel {
+                height: 220px;
+            }
+
+            h1 {
+                font-size: 28px;
+            }
+
+            p {
+                font-size: 16px;
+            }
         }
     </style>
 </head>
 <body>
+
     <h1>Welcome to Apps Touch Screen</h1>
+
     <p>We are glad that you visited our website.</p>
+
+    <div class="carousel">
+        <div class="slides">
+            <img src="images/app1.jpg" alt="App 1">
+            <img src="images/app2.jpg" alt="App 2">
+            <img src="images/app3.jpg" alt="App 3">
+            <img src="images/app4.jpg" alt="App 4">
+            <img src="images/app5.jpg" alt="App 5">
+            <img src="images/app6.jpg" alt="App 6">
+        </div>
+    </div>
+
 </body>
 </html>
