@@ -1,113 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apps Touch Screen</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apps Touch Screen</title>
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            padding: 40px 20px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 40px 20px;
+}
 
-        h1 {
-            color: #333;
-            margin-bottom: 15px;
-        }
+h1 {
+    color: #333;
+    margin-bottom: 15px;
+}
 
-        p {
-            color: #666;
-            margin-bottom: 30px;
-            font-size: 18px;
-        }
+p {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 18px;
+}
 
-        /* ===== CAROUSEL ===== */
-        .carousel {
-            width: 100%;
-            max-width: 600px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
+/* ===== CAROUSEL FRAME ===== */
+.carousel {
+    width: 100%;
+    max-width: 602px;
+    height: 450px;
+    margin: 0 auto;
+    overflow: hidden;
+}
 
-        .slides {
-            display: flex;
-            width: 600%;
-            animation: slide 24s infinite;
-        }
+/* ===== SLIDER ===== */
+.slides {
+    display: flex;
+    width: calc(100% * 6);
+    height: 100%;
+    animation: slide 24s infinite;
+}
 
-        .slides img {
-            width: 100%;
-            flex-shrink: 0;
-            height: auto;
-            display: block;
-        }
+/* ===== IMAGE ===== */
+.slides img {
+    width: calc(100% / 6);
+    height: 100%;
+    object-fit: contain; /* важно: НЕ обрезает */
+    flex-shrink: 0;
+}
 
-        @keyframes slide {
-            0%, 14% {
-                transform: translateX(0%);
-            }
+/* ===== ANIMATION ===== */
+@keyframes slide {
+    0%, 14% {
+        transform: translateX(0%);
+    }
 
-            16%, 30% {
-                transform: translateX(-100%);
-            }
+    16%, 30% {
+        transform: translateX(calc(-100% / 6));
+    }
 
-            32%, 46% {
-                transform: translateX(-200%);
-            }
+    32%, 46% {
+        transform: translateX(calc(-200% / 6));
+    }
 
-            48%, 62% {
-                transform: translateX(-300%);
-            }
+    48%, 62% {
+        transform: translateX(calc(-300% / 6));
+    }
 
-            64%, 78% {
-                transform: translateX(-400%);
-            }
+    64%, 78% {
+        transform: translateX(calc(-400% / 6));
+    }
 
-            80%, 94% {
-                transform: translateX(-500%);
-            }
+    80%, 94% {
+        transform: translateX(calc(-500% / 6));
+    }
 
-            100% {
-                transform: translateX(0%);
-            }
-        }
+    100% {
+        transform: translateX(0%);
+    }
+}
 
-        /* ===== MOBILE ===== */
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 24px;
-            }
+/* ===== MOBILE ===== */
+@media (max-width: 768px) {
+    .carousel {
+        height: 300px;
+    }
 
-            p {
-                font-size: 16px;
-            }
-        }
-    </style>
+    h1 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+</style>
 </head>
+
 <body>
 
-    <h1>Welcome to Apps Touch Screen</h1>
-    <p>We are glad that you visited our website.</p>
+<h1>Welcome to Apps Touch Screen</h1>
+<p>We are glad that you visited our website.</p>
 
-    <div class="carousel">
-        <div class="slides">
-            <img src="Images/head_1.png" alt="">
-            <img src="Images/head_2.png" alt="">
-            <img src="Images/head_3.png" alt="">
-            <img src="Images/head_4.png" alt="">
-            <img src="Images/head_5.png" alt="">
-            <img src="Images/head_6.png" alt="">
-        </div>
+<div class="carousel">
+    <div class="slides">
+        <img src="Images/head_1.png">
+        <img src="Images/head_2.png">
+        <img src="Images/head_3.png">
+        <img src="Images/head_4.png">
+        <img src="Images/head_5.png">
+        <img src="Images/head_6.png">
     </div>
+</div>
 
 </body>
 </html>
