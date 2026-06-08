@@ -36,6 +36,7 @@ p {
     height: 450px;
     margin: 0 auto;
     overflow: hidden;
+    position: relative;
 }
 
 .slides {
@@ -50,6 +51,28 @@ p {
     flex-shrink: 0;
     object-fit: contain;
 }
+
+/* ===== BUTTONS ===== */
+button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 10;
+}
+
+#prev {
+    left: 10px;
+}
+
+#next {
+    right: 10px;
+}
 </style>
 </head>
 
@@ -59,6 +82,9 @@ p {
 <p>We are glad that you visited our website.</p>
 
 <div class="carousel">
+    <button id="prev">‹</button>
+    <button id="next">›</button>
+
     <div class="slides" id="slides">
         <img src="Images/head_1.png">
         <img src="Images/head_2.png">
@@ -74,67 +100,61 @@ let index = 0;
 const slides = document.getElementById("slides");
 const total = slides.children.length;
 
-let startX = 0;
-let currentX = 0;
-let isDragging = false;
-
+/* ===== UPDATE ===== */
 function update() {
     slides.style.transform = `translateX(-${index * 100}%)`;
 }
 
 /* ===== AUTO ===== */
 setInterval(() => {
+    nextSlide();
+}, 3000);
+
+/* ===== BUTTONS ===== */
+document.getElementById("next").addEventListener("click", nextSlide);
+document.getElementById("prev").addEventListener("click", prevSlide);
+
+function nextSlide() {
     index++;
     if (index >= total) index = 0;
     update();
-}, 3000);
+}
 
-update();
+function prevSlide() {
+    index--;
+    if (index < 0) index = total - 1;
+    update();
+}
 
-/* ===== TOUCH ===== */
+/* ===== SWIPE ===== */
+let startX = 0;
+let currentX = 0;
+
 slides.addEventListener("touchstart", (e) => {
     startX = e.touches[0].clientX;
-    isDragging = true;
 });
 
 slides.addEventListener("touchend", (e) => {
-    if (!isDragging) return;
-
     currentX = e.changedTouches[0].clientX;
     handleSwipe();
-    isDragging = false;
 });
 
-/* ===== MOUSE ===== */
 slides.addEventListener("mousedown", (e) => {
     startX = e.clientX;
-    isDragging = true;
 });
 
 slides.addEventListener("mouseup", (e) => {
-    if (!isDragging) return;
-
     currentX = e.clientX;
     handleSwipe();
-    isDragging = false;
 });
 
-/* ===== SWIPE LOGIC ===== */
 function handleSwipe() {
     let diff = startX - currentX;
 
     if (Math.abs(diff) > 50) {
-        if (diff > 0) {
-            index++;
-        } else {
-            index--;
-        }
+        if (diff > 0) nextSlide();
+        else prevSlide();
     }
-
-    if (index < 0) index = total - 1;
-    if (index >= total) index = 0;
-
-    update();
 }
 </script>
 
