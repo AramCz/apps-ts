@@ -1,168 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apps Touch Screen</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps Touch Screen</title>
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    text-align: center;
-    padding: 40px 20px;
-}
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            text-align: center;
+            padding: 40px 20px;
+        }
 
-h1 {
-    color: #333;
-    margin-bottom: 15px;
-}
+        h1 {
+            color: #333;
+            margin-bottom: 15px;
+        }
 
-p {
-    color: #666;
-    margin-bottom: 30px;
-}
+        p {
+            color: #666;
+            margin-bottom: 30px;
+        }
 
-/* ===== CAROUSEL ===== */
-.carousel {
-    width: 100%;
-    max-width: 602px;
-    height: 450px;
-    margin: 0 auto;
-    overflow: hidden;
-}
+        /* ===== CAROUSEL ===== */
+        .carousel {
+            width: 100%;
+            max-width: 602px;
+            height: 450px;
+            margin: 0 auto;
+            overflow: hidden;
+        }
 
-.slides {
-    display: flex;
-    height: 100%;
-    transition: transform 0.5s ease;
-}
+        .slides {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
 
-.slides img {
-    width: 100%;
-    height: 100%;
-    flex-shrink: 0;
-    object-fit: contain;
-}
+        .slides img {
+            width: 100%;
+            height: 100%;
+            flex-shrink: 0;
+            object-fit: contain;
+        }
 
-/* ===== BUTTONS ===== */
-.controls {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    margin-top: 15px;
-}
+        /* ===== BUTTONS ===== */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 15px;
+        }
 
-.controls button {
-    background: rgba(0,0,0,0.6);
-    color: white;
-    border: none;
-    padding: 6px 14px;   /* уменьшенная высота */
-    font-size: 15px;
-    cursor: pointer;
-    border-radius: 8px;
-}
+        .controls button {
+            background: rgba(0,0,0,0.6);
+            color: white;
+            border: none;
+            padding: 6px 14px;   /* уменьшенная высота */
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
 
-/* ===== HIDE ON TOUCH DEVICES ===== */
-@media (hover: none) and (pointer: coarse) {
-    .controls {
-        display: none;
-    }
-}
-</style>
+        /* ===== HIDE ON TOUCH DEVICES ===== */
+        @media (hover: none) and (pointer: coarse) {
+            .controls {
+                display: none;
+            }
+        }
+
+        /* Дополнительно скрываем кнопки на экранах шириной до 768px */
+        @media (max-width: 768px) {
+            .controls {
+                display: none;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<h1>Welcome to Apps Touch Screen</h1>
-<p>We are glad that you visited our website.</p>
+    <h1>Welcome to Apps Touch Screen</h1>
+    <p>We are glad that you visited our website.</p>
 
-<!-- ===== CAROUSEL ===== -->
-<div class="carousel">
-    <div class="slides" id="slides">
-        <img src="Images/head_1.png">
-        <img src="Images/head_2.png">
-        <img src="Images/head_3.png">
-        <img src="Images/head_4.png">
-        <img src="Images/head_5.png">
-        <img src="Images/head_6.png">
+    <!-- ===== CAROUSEL ===== -->
+    <div class="carousel">
+        <div class="slides" id="slides">
+            <img src="Images/head_1.png">
+            <img src="Images/head_2.png">
+            <img src="Images/head_3.png">
+            <img src="Images/head_4.png">
+            <img src="Images/head_5.png">
+            <img src="Images/head_6.png">
+        </div>
     </div>
-</div>
 
-<!-- ===== CONTROLS ===== -->
-<div class="controls">
-    <button id="prev">‹ Prev</button>
-    <button id="next">Next ›</button>
-</div>
+    <!-- ===== CONTROLS ===== -->
+    <div class="controls">
+        <button id="prev">‹ Prev</button>
+        <button id="next">Next ›</button>
+    </div>
 
-<script>
-let index = 0;
-const slides = document.getElementById("slides");
-const total = slides.children.length;
+    <script>
+        let index = 0;
+        const slides = document.getElementById("slides");
+        const total = slides.children.length;
 
-/* ===== UPDATE POSITION ===== */
-function update() {
-    slides.style.transform = `translateX(-${index * 100}%)`;
-}
+        /* ===== UPDATE POSITION ===== */
+        function update() {
+            slides.style.transform = `translateX(-${index * 100}%)`;
+        }
 
-/* ===== AUTO SLIDE ===== */
-setInterval(() => {
-    nextSlide();
-}, 3000);
+        /* ===== AUTO SLIDE ===== */
+        setInterval(() => {
+            nextSlide();
+        }, 3000);
 
-/* ===== BUTTONS ===== */
-document.getElementById("next").addEventListener("click", nextSlide);
-document.getElementById("prev").addEventListener("click", prevSlide);
+        update();
 
-function nextSlide() {
-    index++;
-    if (index >= total) index = 0;
-    update();
-}
+        /* ===== BUTTONS ===== */
+        document.getElementById("next").addEventListener("click", nextSlide);
+        document.getElementById("prev").addEventListener("click", prevSlide);
 
-function prevSlide() {
-    index--;
-    if (index < 0) index = total - 1;
-    update();
-}
+        function nextSlide() {
+            index++;
+            if (index >= total) index = 0;
+            update();
+        }
 
-/* ===== SWIPE ===== */
-let startX = 0;
-let currentX = 0;
+        function prevSlide() {
+            index--;
+            if (index < 0) index = total - 1;
+            update();
+        }
 
-slides.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-});
+        /* ===== SWIPE ===== */
+        let startX = 0;
+        let currentX = 0;
 
-slides.addEventListener("touchend", (e) => {
-    currentX = e.changedTouches[0].clientX;
-    handleSwipe();
-});
+        slides.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX;
+        });
 
-slides.addEventListener("mousedown", (e) => {
-    startX = e.clientX;
-});
+        slides.addEventListener("touchend", (e) => {
+            currentX = e.changedTouches[0].clientX;
+            handleSwipe();
+        });
 
-slides.addEventListener("mouseup", (e) => {
-    currentX = e.clientX;
-    handleSwipe();
-});
+        slides.addEventListener("mousedown", (e) => {
+            startX = e.clientX;
+        });
 
-function handleSwipe() {
-    let diff = startX - currentX;
+        slides.addEventListener("mouseup", (e) => {
+            currentX = e.clientX;
+            handleSwipe();
+        });
 
-    if (Math.abs(diff) > 50) {
-        if (diff > 0) nextSlide();
-        else prevSlide();
-    }
-}
-</script>
+        function handleSwipe() {
+            let diff = startX - currentX;
+
+            if (Math.abs(diff) > 50) {
+                if (diff > 0) nextSlide();
+                else prevSlide();
+            }
+        }
+    </script>
 
 </body>
 </html>
