@@ -29,7 +29,7 @@ p {
     margin-bottom: 30px;
 }
 
-/* ===== FRAME ===== */
+/* ===== CAROUSEL ===== */
 .carousel {
     width: 100%;
     max-width: 602px;
@@ -38,14 +38,12 @@ p {
     overflow: hidden;
 }
 
-/* ===== TRACK ===== */
 .slides {
     display: flex;
     height: 100%;
-    transition: transform 0.6s ease;
+    transition: transform 0.5s ease;
 }
 
-/* ===== IMAGE ===== */
 .slides img {
     width: 100%;
     height: 100%;
@@ -71,43 +69,30 @@ p {
     </div>
 </div>
 
-    <script>
+<script>
 let index = 0;
 const slides = document.getElementById("slides");
 const total = slides.children.length;
 
-let interval = null;
-
-/* ===== AUTO SLIDE ===== */
-function moveSlide() {
-    index++;
-
-    if (index >= total) {
-        index = 0;
-    }
-
-    update();
-}
+let startX = 0;
+let currentX = 0;
+let isDragging = false;
 
 function update() {
     slides.style.transform = `translateX(-${index * 100}%)`;
 }
 
-/* ===== AUTO START ===== */
-function startAuto() {
-    interval = setInterval(moveSlide, 3000);
-}
+/* ===== AUTO ===== */
+setInterval(() => {
+    index++;
+    if (index >= total) index = 0;
+    update();
+}, 3000);
 
-function stopAuto() {
-    clearInterval(interval);
-}
+update();
 
-/* ===== SWIPE / DRAG ===== */
-let startX = 0;
-let isDragging = false;
-
+/* ===== TOUCH ===== */
 slides.addEventListener("touchstart", (e) => {
-    stopAuto();
     startX = e.touches[0].clientX;
     isDragging = true;
 });
@@ -115,15 +100,13 @@ slides.addEventListener("touchstart", (e) => {
 slides.addEventListener("touchend", (e) => {
     if (!isDragging) return;
 
-    let endX = e.changedTouches[0].clientX;
-    handleSwipe(startX, endX);
-
+    currentX = e.changedTouches[0].clientX;
+    handleSwipe();
     isDragging = false;
-    startAuto();
 });
 
+/* ===== MOUSE ===== */
 slides.addEventListener("mousedown", (e) => {
-    stopAuto();
     startX = e.clientX;
     isDragging = true;
 });
@@ -131,15 +114,14 @@ slides.addEventListener("mousedown", (e) => {
 slides.addEventListener("mouseup", (e) => {
     if (!isDragging) return;
 
-    let endX = e.clientX;
-    handleSwipe(startX, endX);
-
+    currentX = e.clientX;
+    handleSwipe();
     isDragging = false;
-    startAuto();
 });
 
-function handleSwipe(start, end) {
-    let diff = start - end;
+/* ===== SWIPE LOGIC ===== */
+function handleSwipe() {
+    let diff = startX - currentX;
 
     if (Math.abs(diff) > 50) {
         if (diff > 0) {
@@ -154,12 +136,7 @@ function handleSwipe(start, end) {
 
     update();
 }
-
-/* ===== INIT ===== */
-update();
-startAuto();
 </script>
-    
 
 </body>
 </html>
