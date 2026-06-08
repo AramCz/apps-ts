@@ -71,11 +71,14 @@ p {
     </div>
 </div>
 
-<script>
+    <script>
 let index = 0;
 const slides = document.getElementById("slides");
 const total = slides.children.length;
 
+let interval = null;
+
+/* ===== AUTO SLIDE ===== */
 function moveSlide() {
     index++;
 
@@ -83,12 +86,80 @@ function moveSlide() {
         index = 0;
     }
 
+    update();
+}
+
+function update() {
     slides.style.transform = `translateX(-${index * 100}%)`;
 }
 
-// auto slide
-setInterval(moveSlide, 3000);
+/* ===== AUTO START ===== */
+function startAuto() {
+    interval = setInterval(moveSlide, 3000);
+}
+
+function stopAuto() {
+    clearInterval(interval);
+}
+
+/* ===== SWIPE / DRAG ===== */
+let startX = 0;
+let isDragging = false;
+
+slides.addEventListener("touchstart", (e) => {
+    stopAuto();
+    startX = e.touches[0].clientX;
+    isDragging = true;
+});
+
+slides.addEventListener("touchend", (e) => {
+    if (!isDragging) return;
+
+    let endX = e.changedTouches[0].clientX;
+    handleSwipe(startX, endX);
+
+    isDragging = false;
+    startAuto();
+});
+
+slides.addEventListener("mousedown", (e) => {
+    stopAuto();
+    startX = e.clientX;
+    isDragging = true;
+});
+
+slides.addEventListener("mouseup", (e) => {
+    if (!isDragging) return;
+
+    let endX = e.clientX;
+    handleSwipe(startX, endX);
+
+    isDragging = false;
+    startAuto();
+});
+
+function handleSwipe(start, end) {
+    let diff = start - end;
+
+    if (Math.abs(diff) > 50) {
+        if (diff > 0) {
+            index++;
+        } else {
+            index--;
+        }
+    }
+
+    if (index < 0) index = total - 1;
+    if (index >= total) index = 0;
+
+    update();
+}
+
+/* ===== INIT ===== */
+update();
+startAuto();
 </script>
+    
 
 </body>
 </html>
