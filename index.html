@@ -51,7 +51,7 @@ p {
     object-fit: contain;
 }
 
-/* ===== CONTROLS ===== */
+/* ===== BUTTONS ===== */
 .controls {
     display: flex;
     justify-content: center;
@@ -63,10 +63,17 @@ p {
     background: rgba(0,0,0,0.6);
     color: white;
     border: none;
-    padding: 10px 18px;
-    font-size: 16px;
+    padding: 6px 14px;   /* уменьшенная высота */
+    font-size: 15px;
     cursor: pointer;
     border-radius: 8px;
+}
+
+/* ===== HIDE ON TOUCH DEVICES ===== */
+@media (hover: none) and (pointer: coarse) {
+    .controls {
+        display: none;
+    }
 }
 </style>
 </head>
@@ -88,7 +95,7 @@ p {
     </div>
 </div>
 
-<!-- ===== BUTTONS ===== -->
+<!-- ===== CONTROLS ===== -->
 <div class="controls">
     <button id="prev">‹ Prev</button>
     <button id="next">Next ›</button>
@@ -99,7 +106,7 @@ let index = 0;
 const slides = document.getElementById("slides");
 const total = slides.children.length;
 
-/* ===== UPDATE ===== */
+/* ===== UPDATE POSITION ===== */
 function update() {
     slides.style.transform = `translateX(-${index * 100}%)`;
 }
