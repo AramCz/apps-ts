@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apps Touch Screen</title>
-
     <style>
         * {
             margin: 0;
@@ -36,14 +35,17 @@
             height: 450px;
             margin: 0 auto;
             overflow: hidden;
+            position: relative;
         }
 
+        /* ===== TRACK ===== */
         .slides {
             display: flex;
             height: 100%;
             transition: transform 0.5s ease;
         }
 
+        /* ===== IMAGE ===== */
         .slides img {
             width: 100%;
             height: 100%;
@@ -52,37 +54,27 @@
         }
 
         /* ===== BUTTONS ===== */
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 15px;
-        }
+        button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.5);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 18px;
+    z-index: 10;
+    border-radius: 8px;
+}
 
-        .controls button {
-            background: rgba(0,0,0,0.6);
-            color: white;
-            border: none;
-            padding: 6px 14px;
-            font-size: 12px;
-            cursor: pointer;
-            border-radius: 8px;
-            font-family: Arial, sans-serif; /* добавляем классический шрифт */
-        }
+#prev {
+    left: 10px;
+}
 
-        /* ===== HIDE ON TOUCH DEVICES ===== */
-        @media (hover: none) and (pointer: coarse) {
-            .controls {
-                display: none;
-            }
-        }
-
-        /* Дополнительно скрываем кнопки на экранах шириной до 768px */
-        @media (max-width: 768px) {
-            .controls {
-                display: none;
-            }
-        }
+#next {
+    right: 10px;
+}
     </style>
 </head>
 
@@ -91,8 +83,10 @@
     <h1>Welcome to Apps Touch Screen</h1>
     <p>We are glad that you visited our website.</p>
 
-    <!-- ===== CAROUSEL ===== -->
     <div class="carousel">
+        <button id="prev">‹</button>
+        <button id="next">›</button>
+
         <div class="slides" id="slides">
             <img src="Images/head_1.png">
             <img src="Images/head_2.png">
@@ -103,23 +97,17 @@
         </div>
     </div>
 
-    <!-- ===== CONTROLS ===== -->
-    <div class="controls">
-        <button id="prev">‹ Prev</button>
-        <button id="next">Next ›</button>
-    </div>
-
     <script>
         let index = 0;
         const slides = document.getElementById("slides");
         const total = slides.children.length;
 
-        /* ===== UPDATE POSITION ===== */
+        /* ===== UPDATE ===== */
         function update() {
             slides.style.transform = `translateX(-${index * 100}%)`;
         }
 
-        /* ===== AUTO SLIDE ===== */
+        /* ===== AUTO ===== */
         setInterval(() => {
             nextSlide();
         }, 3000);
