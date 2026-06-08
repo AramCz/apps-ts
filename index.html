@@ -1,166 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Apps Touch Screen</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apps Touch Screen</title>
 
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
-            text-align: center;
-            padding: 40px 20px;
-        }
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-        h1 {
-            color: #333;
-            margin-bottom: 15px;
-        }
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+    padding: 40px 20px;
+}
 
-        p {
-            color: #666;
-            margin-bottom: 30px;
-        }
+h1 {
+    color: #333;
+    margin-bottom: 15px;
+}
 
-        /* ===== CAROUSEL ===== */
-        .carousel {
-            width: 100%;
-            max-width: 602px;
-            height: 450px;
-            margin: 0 auto;
-            overflow: hidden;
-            position: relative;
-        }
+p {
+    color: #666;
+    margin-bottom: 30px;
+}
 
-        /* ===== TRACK ===== */
-        .slides {
-            display: flex;
-            height: 100%;
-            transition: transform 0.5s ease;
-        }
+/* ===== CAROUSEL ===== */
+.carousel {
+    width: 100%;
+    max-width: 602px;
+    height: 450px;
+    margin: 0 auto;
+    overflow: hidden;
+}
 
-        /* ===== IMAGE ===== */
-        .slides img {
-            width: 100%;
-            height: 100%;
-            flex-shrink: 0;
-            object-fit: contain;
-        }
+.slides {
+    display: flex;
+    height: 100%;
+    transition: transform 0.5s ease;
+}
 
-        /* ===== BUTTONS ===== */
-        button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
+.slides img {
+    width: 100%;
+    height: 100%;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+/* ===== CONTROLS ===== */
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.controls button {
+    background: rgba(0,0,0,0.6);
     color: white;
     border: none;
-    padding: 10px 15px;
+    padding: 10px 18px;
+    font-size: 16px;
     cursor: pointer;
-    font-size: 18px;
-    z-index: 10;
     border-radius: 8px;
 }
-
-#prev {
-    left: 10px;
-}
-
-#next {
-    right: 10px;
-}
-    </style>
+</style>
 </head>
 
 <body>
 
-    <h1>Welcome to Apps Touch Screen</h1>
-    <p>We are glad that you visited our website.</p>
+<h1>Welcome to Apps Touch Screen</h1>
+<p>We are glad that you visited our website.</p>
 
-    <div class="carousel">
-        <button id="prev">‹</button>
-        <button id="next">›</button>
-
-        <div class="slides" id="slides">
-            <img src="Images/head_1.png">
-            <img src="Images/head_2.png">
-            <img src="Images/head_3.png">
-            <img src="Images/head_4.png">
-            <img src="Images/head_5.png">
-            <img src="Images/head_6.png">
-        </div>
+<!-- ===== CAROUSEL ===== -->
+<div class="carousel">
+    <div class="slides" id="slides">
+        <img src="Images/head_1.png">
+        <img src="Images/head_2.png">
+        <img src="Images/head_3.png">
+        <img src="Images/head_4.png">
+        <img src="Images/head_5.png">
+        <img src="Images/head_6.png">
     </div>
+</div>
 
-    <script>
-        let index = 0;
-        const slides = document.getElementById("slides");
-        const total = slides.children.length;
+<!-- ===== BUTTONS ===== -->
+<div class="controls">
+    <button id="prev">‹ Prev</button>
+    <button id="next">Next ›</button>
+</div>
 
-        /* ===== UPDATE ===== */
-        function update() {
-            slides.style.transform = `translateX(-${index * 100}%)`;
-        }
+<script>
+let index = 0;
+const slides = document.getElementById("slides");
+const total = slides.children.length;
 
-        /* ===== AUTO ===== */
-        setInterval(() => {
-            nextSlide();
-        }, 3000);
+/* ===== UPDATE ===== */
+function update() {
+    slides.style.transform = `translateX(-${index * 100}%)`;
+}
 
-        update();
+/* ===== AUTO SLIDE ===== */
+setInterval(() => {
+    nextSlide();
+}, 3000);
 
-        /* ===== BUTTONS ===== */
-        document.getElementById("next").addEventListener("click", nextSlide);
-        document.getElementById("prev").addEventListener("click", prevSlide);
+/* ===== BUTTONS ===== */
+document.getElementById("next").addEventListener("click", nextSlide);
+document.getElementById("prev").addEventListener("click", prevSlide);
 
-        function nextSlide() {
-            index++;
-            if (index >= total) index = 0;
-            update();
-        }
+function nextSlide() {
+    index++;
+    if (index >= total) index = 0;
+    update();
+}
 
-        function prevSlide() {
-            index--;
-            if (index < 0) index = total - 1;
-            update();
-        }
+function prevSlide() {
+    index--;
+    if (index < 0) index = total - 1;
+    update();
+}
 
-        /* ===== SWIPE ===== */
-        let startX = 0;
-        let currentX = 0;
+/* ===== SWIPE ===== */
+let startX = 0;
+let currentX = 0;
 
-        slides.addEventListener("touchstart", (e) => {
-            startX = e.touches[0].clientX;
-        });
+slides.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+});
 
-        slides.addEventListener("touchend", (e) => {
-            currentX = e.changedTouches[0].clientX;
-            handleSwipe();
-        });
+slides.addEventListener("touchend", (e) => {
+    currentX = e.changedTouches[0].clientX;
+    handleSwipe();
+});
 
-        slides.addEventListener("mousedown", (e) => {
-            startX = e.clientX;
-        });
+slides.addEventListener("mousedown", (e) => {
+    startX = e.clientX;
+});
 
-        slides.addEventListener("mouseup", (e) => {
-            currentX = e.clientX;
-            handleSwipe();
-        });
+slides.addEventListener("mouseup", (e) => {
+    currentX = e.clientX;
+    handleSwipe();
+});
 
-        function handleSwipe() {
-            let diff = startX - currentX;
+function handleSwipe() {
+    let diff = startX - currentX;
 
-            if (Math.abs(diff) > 50) {
-                if (diff > 0) nextSlide();
-                else prevSlide();
-            }
-        }
-    </script>
+    if (Math.abs(diff) > 50) {
+        if (diff > 0) nextSlide();
+        else prevSlide();
+    }
+}
+</script>
 
 </body>
 </html>
