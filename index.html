@@ -40,28 +40,28 @@
 
         .slides {
             display: flex;
-            width: calc(100% * 6);
+            width: 600%;
             height: 100%;
             animation: slideshow 24s infinite;
         }
 
         .slides img {
-            width: calc(100% / 6);
+            width: 16.6667%;
             height: 100%;
             object-fit: cover;
         }
 
         @keyframes slideshow {
             0%, 14% {
-                transform: translateX(0);
+                transform: translateX(0%);
             }
 
             16%, 30% {
-                transform: translateX(calc(-100% / 6));
+                transform: translateX(-16.6667%);
             }
 
             32%, 46% {
-                transform: translateX(calc(-100% / 3));
+                transform: translateX(-33.3333%);
             }
 
             48%, 62% {
@@ -69,15 +69,15 @@
             }
 
             64%, 78% {
-                transform: translateX(calc(-200% / 3));
+                transform: translateX(-66.6667%);
             }
 
             80%, 94% {
-                transform: translateX(calc(-500% / 6));
+                transform: translateX(-83.3333%);
             }
 
             100% {
-                transform: translateX(0);
+                transform: translateX(0%);
             }
         }
 
