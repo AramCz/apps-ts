@@ -27,10 +27,12 @@
             );
         }
 
+        /* ===== MENU ===== */
         .menu {
             width: 100%;
             max-width: 602px;
             margin: 0 auto 30px auto;
+
             display: flex;
             justify-content: center;
             gap: 25px;
@@ -42,15 +44,22 @@
             font-size: 16px;
         }
 
+        .menu a:hover {
+            text-decoration: underline;
+        }
+
         .menu-line {
             margin: 0 auto 40px auto;
             width: 80%;
+            border: none;
             border-top: 1px solid #ccc;
         }
 
+        /* ===== HEADER ===== */
         .app-header {
             max-width: 750px;
             margin: 0 auto 30px auto;
+
             display: flex;
             align-items: center;
             justify-content: center;
@@ -75,12 +84,47 @@
             max-width: 420px;
         }
 
+        .info h1 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .info p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .btn {
+            margin-top: 12px;
+            display: inline-block;
+            padding: 8px 12px;
+            background: #333;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 12px;
+        }
+
+        /* ===== DETAILS ===== */
         .details {
             max-width: 750px;
             margin: 75px auto 0 auto;
             text-align: left;
         }
 
+        .details h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .details p {
+            color: #666;
+            line-height: 1.7;
+        }
+
+        /* ===== GALLERY ===== */
         .gallery-section {
             max-width: 750px;
             margin: 40px auto 0 auto;
@@ -89,6 +133,7 @@
 
         .gallery-section h2 {
             margin-bottom: 10px;
+            color: #333;
         }
 
         .gallery {
@@ -96,11 +141,13 @@
             gap: 15px;
         }
 
-        #portraitGallery {
+        /* PORTRAIT = 4 */
+        #galleryPortrait {
             grid-template-columns: repeat(4, 1fr);
         }
 
-        #landscapeGallery {
+        /* LANDSCAPE = 2 */
+        #galleryLandscape {
             grid-template-columns: repeat(2, 1fr);
             margin-top: 40px;
         }
@@ -116,13 +163,16 @@
             transform: scale(1.03);
         }
 
+        /* ===== MODAL ===== */
         .modal {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
+
             width: 100%;
             height: 100%;
+
             background: rgba(0,0,0,0.85);
             justify-content: center;
             align-items: center;
@@ -132,135 +182,176 @@
             max-width: 90%;
             max-height: 90%;
         }
-
     </style>
 </head>
 
 <body>
 
-<!-- MENU -->
-<nav class="menu">
-    <a href="index.html">Home</a>
-    <a href="apps.html">Apps</a>
-    <a href="contact.html">Contact</a>
-</nav>
+    <!-- MENU -->
+    <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="apps.html">Apps</a>
+        <a href="contact.html">Contact</a>
+    </nav>
 
-<hr class="menu-line">
+    <hr class="menu-line">
 
-<!-- HEADER -->
-<div class="app-header">
-    <div class="icon">
-        <img id="appIcon">
+    <!-- HEADER -->
+    <div class="app-header">
+
+        <div class="icon">
+            <img id="appIcon" src="">
+        </div>
+
+        <div class="info">
+            <h1 id="appTitle">App Title</h1>
+            <p id="appDesc">App description</p>
+
+            <div class="btn">View in App Store</div>
+        </div>
+
     </div>
 
-    <div class="info">
-        <h1 id="appTitle"></h1>
-        <p id="appDesc"></p>
+    <!-- DETAILS -->
+    <div class="details">
+        <h2>About this app</h2>
+        <p id="appFullDesc"></p>
     </div>
-</div>
 
-<!-- DETAILS -->
-<div class="details">
-    <h2>About this app</h2>
-    <p id="appFullDesc"></p>
-</div>
+    <!-- GALLERIES -->
+    <div class="gallery-section" id="portraitSection">
+        <h2>Portrait</h2>
+        <div class="gallery" id="galleryPortrait"></div>
+    </div>
 
-<!-- GALLERIES -->
-<div class="gallery-section" id="portraitSection">
-    <h2>Portrait</h2>
-    <div class="gallery" id="portraitGallery"></div>
-</div>
+    <div class="gallery-section" id="landscapeSection">
+        <h2>Landscape</h2>
+        <div class="gallery" id="galleryLandscape"></div>
+    </div>
 
-<div class="gallery-section" id="landscapeSection">
-    <h2>Landscape</h2>
-    <div class="gallery" id="landscapeGallery"></div>
-</div>
+    <!-- MODAL -->
+    <div class="modal" id="modal" onclick="closeModal()">
+        <img id="modalImg">
+    </div>
 
-<!-- MODAL -->
-<div class="modal" id="modal" onclick="closeModal()">
-    <img id="modalImg">
-</div>
+    <script>
+        const apps = {
+            expedition: {
+                title: "Expedition 4x4",
+                desc: "Organize groups for expeditions, competitions or other purposes, track group participants and optionally take part in them.",
+                fullDesc: `Expedition 4x4 is a versatile app that supports two modes...`,
+                icon: "Images/expedition_small.png",
 
-<script>
+                imagesPortrait: [
+                    "Images/head_1.png",
+                    "Images/head_2.png"
+                ],
 
-const apps = {
-    expedition: {
-        title: "Expedition 4x4",
-        desc: "Organize groups for expeditions.",
-        fullDesc: "Full description here",
-        icon: "Images/expedition_small.png",
+                imagesLandscape: [
+                    "Images/head_3.png",
+                    "Images/head_4.png"
+                ]
+            },
 
-        imagesPortrait: [
-            "Images/head_1.png",
-            "Images/head_2.png"
-        ],
+            offroad: {
+                title: "Off Road Instrumentations",
+                desc: "This app is created for off road lovers.",
+                fullDesc: `Off Road Instrumentations is your essential tool...`,
+                icon: "Images/OffRoad_small.png",
 
-        imagesLandscape: [
-            "Images/head_3.png",
-            "Images/head_4.png"
-        ]
-    },
+                imagesPortrait: ["Images/head_1.png"],
+                imagesLandscape: []
+            },
 
-    offroad: {
-        title: "Off Road Instrumentations",
-        desc: "Off-road safety tool",
-        fullDesc: "Full description here",
-        icon: "Images/OffRoad_small.png",
+            forble: {
+                title: "ForBLE",
+                desc: "Communicate with microcontrollers.",
+                fullDesc: `BLE communication app.`,
+                icon: "Images/ForBLE_small.png",
 
-        imagesPortrait: ["Images/head_1.png"],
-        imagesLandscape: []
-    }
-};
+                imagesPortrait: [],
+                imagesLandscape: ["Images/head_1.png", "Images/head_2.png"]
+            },
 
-const params = new URLSearchParams(window.location.search);
-const appKey = params.get("app");
-const app = apps[appKey];
+            forbike: {
+                title: "ForBike",
+                desc: "Bike app.",
+                fullDesc: `Bike tracking app.`,
+                icon: "Images/ForBike_small.png",
 
-if (app) {
+                imagesPortrait: ["Images/ForBike/bd_1.png", "Images/ForBike/bd_2.png", "Images/ForBike/bd_3.png", "Images/ForBike/bd_4.png", "Images/ForBike/bd_5.png", "Images/ForBike/bd_6.png"],
+                imagesLandscape: ["Images/ForBike/bd_2.png"]
+            },
 
-    document.getElementById("appTitle").innerText = app.title;
-    document.getElementById("appDesc").innerText = app.desc;
-    document.getElementById("appFullDesc").innerText = app.fullDesc;
-    document.getElementById("appIcon").src = app.icon;
+            puzzle: {
+                title: "Family Puzzle",
+                desc: "Puzzle app.",
+                fullDesc: `Puzzle game.`,
+                icon: "Images/Puzzle_small.png",
 
-    const portraitSection = document.getElementById("portraitSection");
-    const landscapeSection = document.getElementById("landscapeSection");
+                imagesPortrait: [],
+                imagesLandscape: []
+            },
 
-    const portraitGallery = document.getElementById("portraitGallery");
-    const landscapeGallery = document.getElementById("landscapeGallery");
+            carmusic: {
+                title: "Car Music",
+                desc: "Music app.",
+                fullDesc: `Music player.`,
+                icon: "Images/CarMusic_small.png",
 
-    function addImages(list, container) {
-        list.forEach(src => {
-            const img = document.createElement("img");
-            img.src = src;
-            img.onclick = () => openModal(src);
-            container.appendChild(img);
-        });
-    }
+                imagesPortrait: ["Images/head_1.png"],
+                imagesLandscape: ["Images/head_2.png"]
+            }
+        };
 
-    if (app.imagesPortrait && app.imagesPortrait.length > 0) {
-        addImages(app.imagesPortrait, portraitGallery);
-    } else {
-        portraitSection.style.display = "none";
-    }
+        const params = new URLSearchParams(window.location.search);
+        const appKey = params.get("app");
+        const app = apps[appKey];
 
-    if (app.imagesLandscape && app.imagesLandscape.length > 0) {
-        addImages(app.imagesLandscape, landscapeGallery);
-    } else {
-        landscapeSection.style.display = "none";
-    }
-}
+        if (app) {
 
-function openModal(src) {
-    document.getElementById("modalImg").src = src;
-    document.getElementById("modal").style.display = "flex";
-}
+            document.getElementById("appTitle").innerText = app.title;
+            document.getElementById("appDesc").innerText = app.desc;
+            document.getElementById("appFullDesc").innerText = app.fullDesc;
+            document.getElementById("appIcon").src = app.icon;
 
-function closeModal() {
-    document.getElementById("modal").style.display = "none";
-}
+            const portraitSection = document.getElementById("portraitSection");
+            const landscapeSection = document.getElementById("landscapeSection");
 
-</script>
+            const portraitGallery = document.getElementById("galleryPortrait");
+            const landscapeGallery = document.getElementById("galleryLandscape");
+
+            function addImages(list, container) {
+                list.forEach(src => {
+                    const img = document.createElement("img");
+                    img.src = src;
+                    img.onclick = () => openModal(src);
+                    container.appendChild(img);
+                });
+            }
+
+            if (app.imagesPortrait && app.imagesPortrait.length > 0) {
+                addImages(app.imagesPortrait, portraitGallery);
+            } else {
+                portraitSection.style.display = "none";
+            }
+
+            if (app.imagesLandscape && app.imagesLandscape.length > 0) {
+                addImages(app.imagesLandscape, landscapeGallery);
+            } else {
+                landscapeSection.style.display = "none";
+            }
+        }
+
+        function openModal(src) {
+            document.getElementById("modalImg").src = src;
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function closeModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
 
 </body>
 </html>
