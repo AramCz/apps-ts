@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apps - Apps Touch Screen</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+
+            background: linear-gradient(
+                to bottom,
+                #ced8d9 0%,
+                #ffffff 20%,
+                #ffffff 80%,
+                #ced8d9 100%
+            );
+        }
+
+        /* ===== MENU ===== */
+        .menu {
+            width: 100%;
+            max-width: 602px;
+            margin: 0 auto 30px auto;
+
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .menu a:hover {
+            text-decoration: underline;
+        }
+
+        .menu-line {
+            margin: 0 auto 40px auto;
+            width: 80%;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+
+        /* ===== TITLE ===== */
+        h1 {
+            color: #868686;
+            margin-bottom: 30px;
+        }
+
+        /* ===== APPS LIST ===== */
+        .apps-list {
+            max-width: 700px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .app-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+
+            padding: 14px;
+            border-radius: 12px;
+
+            background: rgba(255,255,255,0.65);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .app-icon {
+            width: 60px;
+            height: 60px;
+            border: none;
+            background: transparent;
+            padding: 0;
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .app-info {
+            text-align: left;
+        }
+
+        .app-info h3 {
+            margin: 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        .app-info p {
+            margin-top: 4px;
+            font-size: 13px;
+            color: #777;
+            line-height: 1.3;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="apps.html">Apps</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <hr class="menu-line">
+
+    <h1>Applications</h1>
+
+    <!-- APPS LIST -->
+    <div class="apps-list">
+
+        <div class="app-item">
+            <button class="app-icon">
+                <img src="Images/expedition_small.png">
+            </button>
+            <div class="app-info">
+                <h3>Expedition 4x4</h3>
+                <p>Navigation and expedition tracking app for off-road adventures.</p>
+            </div>
+        </div>
+
+        <div class="app-item">
+            <button class="app-icon">
+                <img src="Images/OffRoad_small.png">
+            </button>
+            <div class="app-info">
+                <h3>Off Road Instrumentations</h3>
+                <p>Vehicle dashboard system for off-road driving analytics.</p>
+            </div>
+        </div>
+
+        <div class="app-item">
+            <button class="app-icon">
+                <img src="Images/ForBLE_small.png">
+            </button>
+            <div class="app-info">
+                <h3>ForBLE</h3>
+                <p>Bluetooth Low Energy tools for device testing and diagnostics.</p>
+            </div>
+        </div>
+
+        <div class="app-item">
+            <button class="app-icon">
+                <img src="Images/ForBike_small.png">
+            </button>
+            <div class="app-info">
+                <h3>ForBike</h3>
+                <p>Bike tracking and performance analytics application.</p>
+            </div>
+        </div>
+
+        <div class="app-item">
+            <button class="app-icon">
+                <img src="Images/Puzzle_small.png">
+            </button>
+            <div class="app-info">
+                <h3>Family Puzzle</h3>
+                <p>Interactive puzzle game designed for family entertainment.</p>
+            </div>
+        </div>
+
+        <div class="app-item">
+            <button class="app-icon">
+                <img src="Images/CarMusic_small.png">
+            </button>
+            <div class="app-info">
+                <h3>Car Music</h3>
+                <p>Music player optimized for in-car experience and driving mode.</p>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+</html>
