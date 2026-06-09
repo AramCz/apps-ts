@@ -157,14 +157,19 @@
             placeholder="Enter your email"
         >
 
-        <label for="subject">Subject</label>
-        <input
-            type="text"
-            id="subject"
-            name="subject"
-            placeholder="Enter subject"
-        >
-
+        <label for="app">App</label>
+        <select id="app" name="app">
+            <option value="" disabled selected>
+                Select application
+            </option>
+            <option value="app1">Application 1</option>
+            <option value="app2">Application 2</option>
+            <option value="app3">Application 3</option>
+            <option value="expedition">Expedition 4x4</option>
+            <option value="offroad">OffRoad Navigator</option>
+            <option value="ble">BLE Tools</option>
+        </select>
+        
         <label for="description">Description</label>
         <textarea
             id="description"
