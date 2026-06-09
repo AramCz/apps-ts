@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Detail</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+
+            background: linear-gradient(
+                to bottom,
+                #ced8d9 0%,
+                #ffffff 20%,
+                #ffffff 80%,
+                #ced8d9 100%
+            );
+        }
+
+        /* ===== MENU ===== */
+        .menu {
+            width: 100%;
+            max-width: 602px;
+            margin: 0 auto 30px auto;
+
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .menu a:hover {
+            text-decoration: underline;
+        }
+
+        .menu-line {
+            margin: 0 auto 40px auto;
+            width: 80%;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+
+        /* ===== APP HEADER ===== */
+        .app-header {
+            max-width: 750px;
+            margin: 0 auto 30px auto;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .app-icon {
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .app-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .app-info {
+            text-align: left;
+            max-width: 400px;
+        }
+
+        .app-info h1 {
+            font-size: 22px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .app-info p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.4;
+        }
+
+        .download-btn {
+            margin-top: 10px;
+            display: inline-block;
+
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: none;
+
+            background: #333;
+            color: white;
+
+            cursor: pointer;
+        }
+
+        /* ===== SCREENSHOTS ===== */
+        .screenshots {
+            max-width: 750px;
+            margin: 40px auto 0 auto;
+
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .screenshots img {
+            width: 100%;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+
+        .screenshots img:hover {
+            transform: scale(1.03);
+        }
+
+        /* ===== FULLSCREEN VIEW ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0,0,0,0.8);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 90%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- MENU -->
+    <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="apps.html">Apps</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <hr class="menu-line">
+
+    <!-- APP HEADER -->
+    <div class="app-header">
+
+        <div class="app-icon">
+            <img src="Images/expedition_small.png">
+        </div>
+
+        <div class="app-info">
+            <h1>Expedition 4x4</h1>
+            <p>
+                Advanced navigation and tracking system for off-road expeditions.
+                Designed for explorers who need reliability in extreme conditions.
+            </p>
+
+            <button class="download-btn">View in App Store</button>
+        </div>
+
+    </div>
+
+    <!-- SCREENSHOTS -->
+    <div class="screenshots">
+        <img src="Images/head_1.png" onclick="openImg(this)">
+        <img src="Images/head_2.png" onclick="openImg(this)">
+        <img src="Images/head_3.png" onclick="openImg(this)">
+        <img src="Images/head_4.png" onclick="openImg(this)">
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal" id="modal" onclick="closeImg()">
+        <img id="modalImg">
+    </div>
+
+    <script>
+        function openImg(img) {
+            document.getElementById("modalImg").src = img.src;
+            document.getElementById("modal").style.display = "flex";
+        }
+
+        function closeImg() {
+            document.getElementById("modal").style.display = "none";
+        }
+    </script>
+
+</body>
+</html>
