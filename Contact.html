@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Apps Touch Screen</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 40px 20px;
+            min-height: 100vh;
+
+            background: linear-gradient(
+                to bottom,
+                #ced8d9 0%,
+                #ffffff 20%,
+                #ffffff 80%,
+                #ced8d9 100%
+            );
+        }
+
+        /* ===== MENU ===== */
+
+        .menu {
+            width: 100%;
+            max-width: 602px;
+            margin: 0 auto 30px auto;
+
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        .menu a {
+            color: #333;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .menu a:hover {
+            text-decoration: underline;
+        }
+
+        .menu-line {
+            margin: 0 auto 40px auto;
+            width: 80%;
+            border: none;
+            border-top: 1px solid #ccc;
+        }
+
+        /* ===== CONTACT IMAGE ===== */
+
+        .contact-image {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto 40px auto;
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* ===== FORM ===== */
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: left;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+
+            border: 1px solid #ccc;
+            border-radius: 6px;
+
+            font-size: 16px;
+            font-family: Arial, sans-serif;
+        }
+
+        .contact-form textarea {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        .send-button {
+            width: 100%;
+            padding: 14px;
+
+            border: none;
+            border-radius: 6px;
+
+            background-color: #333;
+            color: white;
+
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .send-button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="menu">
+        <a href="index.html">Home</a>
+        <a href="apps.html">Apps</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <hr class="menu-line">
+
+    <!-- Contact Us image -->
+    <div class="contact-image">
+        <img src="Images/contact_us.png" alt="Contact Us">
+    </div>
+
+    <!-- Contact form -->
+    <form class="contact-form">
+
+        <label for="name">Name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Enter your name"
+        >
+
+        <label for="email">Email</label>
+        <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+        >
+
+        <label for="subject">Subject</label>
+        <input
+            type="text"
+            id="subject"
+            name="subject"
+            placeholder="Enter subject"
+        >
+
+        <label for="description">Description</label>
+        <textarea
+            id="description"
+            name="description"
+            placeholder="Enter your message"
+        ></textarea>
+
+        <button type="submit" class="send-button">
+            Send
+        </button>
+
+    </form>
+
+</body>
+</html>
