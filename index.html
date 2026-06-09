@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apps Touch Screen</title>
+
     <style>
         * {
             margin: 0;
@@ -55,26 +56,58 @@
 
         /* ===== BUTTONS ===== */
         button {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background: rgba(0,0,0,0.5);
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 18px;
-    z-index: 10;
-    border-radius: 8px;
-}
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,0.5);
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-size: 18px;
+            z-index: 10;
+            border-radius: 8px;
+        }
 
-#prev {
-    left: 10px;
-}
+        #prev {
+            left: 10px;
+        }
 
-#next {
-    right: 10px;
-}
+        #next {
+            right: 10px;
+        }
+
+        /* ===== THUMBNAILS ===== */
+        .thumbnails {
+            width: 100%;
+            max-width: 602px;
+            margin: 10px auto 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            gap: 5px;
+        }
+
+        .thumbnails button {
+            position: static;
+            transform: none;
+
+            width: 45px;
+            height: 45px;
+            padding: 0;
+
+            border: 1px solid #ccc;
+            border-radius: 4px;
+
+            background: transparent;
+            overflow: hidden;
+        }
+
+        .thumbnails img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
     </style>
 </head>
 
@@ -95,6 +128,16 @@
             <img src="Images/head_5.png">
             <img src="Images/head_6.png">
         </div>
+    </div>
+
+    <!-- ===== THUMBNAILS ===== -->
+    <div class="thumbnails">
+        <button><img src="Images/head_1.png"></button>
+        <button><img src="Images/head_2.png"></button>
+        <button><img src="Images/head_3.png"></button>
+        <button><img src="Images/head_4.png"></button>
+        <button><img src="Images/head_5.png"></button>
+        <button><img src="Images/head_6.png"></button>
     </div>
 
     <script>
