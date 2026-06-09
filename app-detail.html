@@ -55,7 +55,7 @@
             border-top: 1px solid #ccc;
         }
 
-        /* ===== APP HEADER ===== */
+        /* ===== HEADER ===== */
         .app-header {
             max-width: 750px;
             margin: 0 auto 30px auto;
@@ -66,52 +66,48 @@
             gap: 20px;
         }
 
-        .app-icon {
-            width: 100px;
-            height: 100px;
+        .icon {
+            width: 110px;
+            height: 110px;
             border-radius: 20px;
             overflow: hidden;
         }
 
-        .app-icon img {
+        .icon img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .app-info {
+        .info {
             text-align: left;
-            max-width: 400px;
+            max-width: 420px;
         }
 
-        .app-info h1 {
+        .info h1 {
             font-size: 22px;
             color: #333;
             margin-bottom: 8px;
         }
 
-        .app-info p {
+        .info p {
             font-size: 14px;
             color: #666;
             line-height: 1.4;
         }
 
-        .download-btn {
-            margin-top: 10px;
+        .btn {
+            margin-top: 12px;
             display: inline-block;
-
             padding: 10px 16px;
-            border-radius: 8px;
-            border: none;
-
             background: #333;
             color: white;
-
+            border-radius: 8px;
             cursor: pointer;
         }
 
-        /* ===== SCREENSHOTS ===== */
-        .screenshots {
+        /* ===== GALLERY ===== */
+        .gallery {
             max-width: 750px;
             margin: 40px auto 0 auto;
 
@@ -120,18 +116,18 @@
             gap: 15px;
         }
 
-        .screenshots img {
+        .gallery img {
             width: 100%;
             border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.2s ease;
+            transition: 0.2s;
         }
 
-        .screenshots img:hover {
+        .gallery img:hover {
             transform: scale(1.03);
         }
 
-        /* ===== FULLSCREEN VIEW ===== */
+        /* ===== MODAL ===== */
         .modal {
             display: none;
             position: fixed;
@@ -141,7 +137,7 @@
             width: 100%;
             height: 100%;
 
-            background: rgba(0,0,0,0.8);
+            background: rgba(0,0,0,0.85);
             justify-content: center;
             align-items: center;
         }
@@ -164,45 +160,129 @@
 
     <hr class="menu-line">
 
-    <!-- APP HEADER -->
+    <!-- HEADER -->
     <div class="app-header">
 
-        <div class="app-icon">
-            <img src="Images/expedition_small.png">
+        <div class="icon">
+            <img id="appIcon" src="">
         </div>
 
-        <div class="app-info">
-            <h1>Expedition 4x4</h1>
-            <p>
-                Advanced navigation and tracking system for off-road expeditions.
-                Designed for explorers who need reliability in extreme conditions.
-            </p>
+        <div class="info">
+            <h1 id="appTitle">App Title</h1>
+            <p id="appDesc">App description</p>
 
-            <button class="download-btn">View in App Store</button>
+            <div class="btn">View in Store</div>
         </div>
 
     </div>
 
-    <!-- SCREENSHOTS -->
-    <div class="screenshots">
-        <img src="Images/head_1.png" onclick="openImg(this)">
-        <img src="Images/head_2.png" onclick="openImg(this)">
-        <img src="Images/head_3.png" onclick="openImg(this)">
-        <img src="Images/head_4.png" onclick="openImg(this)">
-    </div>
+    <!-- GALLERY -->
+    <div class="gallery" id="gallery"></div>
 
     <!-- MODAL -->
-    <div class="modal" id="modal" onclick="closeImg()">
+    <div class="modal" id="modal" onclick="closeModal()">
         <img id="modalImg">
     </div>
 
     <script>
-        function openImg(img) {
-            document.getElementById("modalImg").src = img.src;
+        /* ===== DATABASE (LOCAL DATA) ===== */
+        const apps = {
+            expedition: {
+                title: "Expedition 4x4",
+                desc: "Advanced navigation and expedition tracking system for off-road adventures.",
+                icon: "Images/expedition_small.png",
+                images: [
+                    "Images/head_1.png",
+                    "Images/head_2.png",
+                    "Images/head_3.png",
+                    "Images/head_4.png"
+                ]
+            },
+
+            offroad: {
+                title: "Off Road Instrumentations",
+                desc: "Vehicle dashboard system for off-road driving analytics and monitoring.",
+                icon: "Images/OffRoad_small.png",
+                images: [
+                    "Images/head_1.png",
+                    "Images/head_2.png",
+                    "Images/head_3.png",
+                    "Images/head_4.png"
+                ]
+            },
+
+            forble: {
+                title: "ForBLE",
+                desc: "Bluetooth Low Energy tools for testing, scanning and diagnostics.",
+                icon: "Images/ForBLE_small.png",
+                images: [
+                    "Images/head_1.png",
+                    "Images/head_2.png"
+                ]
+            },
+
+            forbike: {
+                title: "ForBike",
+                desc: "Bike tracking and performance analytics application.",
+                icon: "Images/ForBike_small.png",
+                images: [
+                    "Images/head_1.png",
+                    "Images/head_2.png"
+                ]
+            },
+
+            puzzle: {
+                title: "Family Puzzle",
+                desc: "Fun interactive puzzle game for family entertainment.",
+                icon: "Images/Puzzle_small.png",
+                images: [
+                    "Images/head_1.png",
+                    "Images/head_2.png"
+                ]
+            },
+
+            carmusic: {
+                title: "Car Music",
+                desc: "Music player optimized for driving experience.",
+                icon: "Images/CarMusic_small.png",
+                images: [
+                    "Images/head_1.png",
+                    "Images/head_2.png"
+                ]
+            }
+        };
+
+        /* ===== GET PARAM ===== */
+        const params = new URLSearchParams(window.location.search);
+        const appKey = params.get("app");
+
+        const app = apps[appKey];
+
+        /* ===== APPLY DATA ===== */
+        if (app) {
+            document.getElementById("appTitle").innerText = app.title;
+            document.getElementById("appDesc").innerText = app.desc;
+            document.getElementById("appIcon").src = app.icon;
+
+            const gallery = document.getElementById("gallery");
+
+            app.images.forEach(src => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.onclick = () => openModal(src);
+                gallery.appendChild(img);
+            });
+        } else {
+            document.getElementById("appTitle").innerText = "App not found";
+        }
+
+        /* ===== MODAL ===== */
+        function openModal(src) {
+            document.getElementById("modalImg").src = src;
             document.getElementById("modal").style.display = "flex";
         }
 
-        function closeImg() {
+        function closeModal() {
             document.getElementById("modal").style.display = "none";
         }
     </script>
