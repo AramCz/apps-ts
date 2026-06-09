@@ -99,12 +99,29 @@
         .btn {
             margin-top: 12px;
             display: inline-block;
-            padding: 10px 16px;
+            padding: 8px 12px;
             background: #333;
             color: white;
             border-radius: 8px;
             cursor: pointer;
             font-size: 12px;
+        }
+
+        /* ===== DETAILS ===== */
+        .details {
+            max-width: 750px;
+            margin: 35px auto 0 auto;
+            text-align: left;
+        }
+
+        .details h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .details p {
+            color: #666;
+            line-height: 1.7;
         }
 
         /* ===== GALLERY ===== */
@@ -177,6 +194,12 @@
 
     </div>
 
+    <!-- DETAILS -->
+    <div class="details">
+        <h2>About this app</h2>
+        <p id="appFullDesc"></p>
+    </div>
+
     <!-- GALLERY -->
     <div class="gallery" id="gallery"></div>
 
@@ -186,83 +209,64 @@
     </div>
 
     <script>
-        /* ===== DATABASE (LOCAL DATA) ===== */
         const apps = {
             expedition: {
                 title: "Expedition 4x4",
                 desc: "Organize groups for expeditions, competitions or other purposes, track group participants and optionally take part in them.",
+                fullDesc: "Text 1",
                 icon: "Images/expedition_small.png",
-                images: [
-                    "Images/head_1.png",
-                    "Images/head_2.png",
-                    "Images/head_3.png",
-                    "Images/head_4.png"
-                ]
+                images: ["Images/head_1.png","Images/head_2.png","Images/head_3.png","Images/head_4.png"]
             },
 
             offroad: {
                 title: "Off Road Instrumentations",
                 desc: "This app is created for off road lovers. In off road conditions the main thing is security.",
+                fullDesc: "Text 2",
                 icon: "Images/OffRoad_small.png",
-                images: [
-                    "Images/head_1.png",
-                    "Images/head_2.png",
-                    "Images/head_3.png",
-                    "Images/head_4.png"
-                ]
+                images: ["Images/head_1.png","Images/head_2.png","Images/head_3.png","Images/head_4.png"]
             },
 
             forble: {
                 title: "ForBLE",
                 desc: "This app is designed to communicate with microcontrollers such as Arduino and others.",
+                fullDesc: "Text 3",
                 icon: "Images/ForBLE_small.png",
-                images: [
-                    "Images/head_1.png",
-                    "Images/head_2.png"
-                ]
+                images: ["Images/head_1.png","Images/head_2.png"]
             },
 
             forbike: {
                 title: "ForBike",
                 desc: "This app can be used as in everyday life and also when training.",
+                fullDesc: "Text 4",
                 icon: "Images/ForBike_small.png",
-                images: [
-                    "Images/head_1.png",
-                    "Images/head_2.png"
-                ]
+                images: ["Images/head_1.png","Images/head_2.png"]
             },
 
             puzzle: {
                 title: "Family Puzzle",
                 desc: "Enjoy a fun puzzle experience for people of all ages. Turn any photo into a puzzle and challenge yourself, friends or family.",
+                fullDesc: "Text 5",
                 icon: "Images/Puzzle_small.png",
-                images: [
-                    "Images/head_1.png",
-                    "Images/head_2.png"
-                ]
+                images: ["Images/head_1.png","Images/head_2.png"]
             },
 
             carmusic: {
                 title: "Car Music",
                 desc: "This app is designed especially for use in the car, but it can also be used elsewhere.",
+                fullDesc: "Text 6",
                 icon: "Images/CarMusic_small.png",
-                images: [
-                    "Images/head_1.png",
-                    "Images/head_2.png"
-                ]
+                images: ["Images/head_1.png","Images/head_2.png"]
             }
         };
 
-        /* ===== GET PARAM ===== */
         const params = new URLSearchParams(window.location.search);
         const appKey = params.get("app");
-
         const app = apps[appKey];
 
-        /* ===== APPLY DATA ===== */
         if (app) {
             document.getElementById("appTitle").innerText = app.title;
             document.getElementById("appDesc").innerText = app.desc;
+            document.getElementById("appFullDesc").innerText = app.fullDesc;
             document.getElementById("appIcon").src = app.icon;
 
             const gallery = document.getElementById("gallery");
@@ -273,11 +277,8 @@
                 img.onclick = () => openModal(src);
                 gallery.appendChild(img);
             });
-        } else {
-            document.getElementById("appTitle").innerText = "App not found";
         }
 
-        /* ===== MODAL ===== */
         function openModal(src) {
             document.getElementById("modalImg").src = src;
             document.getElementById("modal").style.display = "flex";
