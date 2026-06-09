@@ -125,32 +125,15 @@
         }
 
         /* ===== GALLERY ===== */
-        .gallery-section {
+        .gallery {
             max-width: 750px;
             margin: 40px auto 0 auto;
-            text-align: left;
-        }
-
-        .gallery-section h2 {
-            margin-bottom: 10px;
-            color: #333;
-        }
-
-        .gallery {
+        
             display: grid;
+            grid-template-columns: repeat(4, 1fr);
             gap: 15px;
         }
-
-        /* PORTRAIT = 4 */
-        #galleryPortrait {
-            grid-template-columns: repeat(4, 1fr);
-        }
-
-        /* LANDSCAPE = 2 */
-        #galleryLandscape {
-            grid-template-columns: repeat(2, 1fr);
-            margin-top: 40px;
-        }
+        
 
         .gallery img {
             width: 100%;
@@ -158,7 +141,7 @@
             cursor: pointer;
             transition: 0.2s;
         }
-
+        
         .gallery img:hover {
             transform: scale(1.03);
         }
@@ -218,16 +201,8 @@
         <p id="appFullDesc"></p>
     </div>
 
-    <!-- GALLERIES -->
-    <div class="gallery-section" id="portraitSection">
-        <h2>Portrait</h2>
-        <div class="gallery" id="galleryPortrait"></div>
-    </div>
-
-    <div class="gallery-section" id="landscapeSection">
-        <h2>Landscape</h2>
-        <div class="gallery" id="galleryLandscape"></div>
-    </div>
+    <!-- GALLERY -->
+    <div class="gallery" id="gallery"></div>
 
     <!-- MODAL -->
     <div class="modal" id="modal" onclick="closeModal()">
@@ -239,68 +214,107 @@
             expedition: {
                 title: "Expedition 4x4",
                 desc: "Organize groups for expeditions, competitions or other purposes, track group participants and optionally take part in them.",
-                fullDesc: `Expedition 4x4 is a versatile app that supports two modes...`,
+                fullDesc: `Expedition 4x4 is a versatile app that supports two modes: Group Expedition and Solo Mode.
+                        
+                         Group Expedition
+                          • Create an expedition and track participants in real time.
+                          • The organizer can mark key points on the map that are visible to all participants.
+                          • Organizers may also join the expedition as participants and share their location with the group.
+                          • Suitable for expeditions, families, friends, and any group activity.
+                        
+                         Solo Mode
+                          • Travel independently with personal location tracking.
+                         
+                         Available in both modes
+                          • Add notes during your journey and save them to a journal for future reference.
+                          • Navigate to any selected destination.
+                          • Access expedition history.
+                          • Replay your entire trip with animated route playback.
+                          • Optional off-road tools are available as in-app purchases.
+                        `,
                 icon: "Images/expedition_small.png",
-
-                imagesPortrait: [
-                    "Images/head_1.png",
-                    "Images/head_2.png"
-                ],
-
-                imagesLandscape: [
-                    "Images/head_3.png",
-                    "Images/head_4.png"
-                ]
+                images: ["Images/head_1.png","Images/head_2.png","Images/head_3.png","Images/head_4.png"]
             },
 
             offroad: {
                 title: "Off Road Instrumentations",
-                desc: "This app is created for off road lovers.",
-                fullDesc: `Off Road Instrumentations is your essential tool...`,
+                desc: "This app is created for off road lovers. In off road conditions the main thing is security.",
+                fullDesc: `Off Road Instrumentations is your essential tool for safe and exciting off-road adventures.
+                
+                        When driving off-road, safety is key — especially on uneven terrain where rollovers are a real danger. This app helps you monitor the tilt of your vehicle in real time, so you can stay in control and avoid risky situations.
+                        The inclinometer shows how much your vehicle leans forward, backward, or sideways. You can also set a custom maximum tilt angle — once reached or exceeded, the app will trigger a visual and audible warning to alert you.
+                        
+                        Key Features:
+                        ● Inclinometer – Displays the vehicle’s tilt angle in degrees or percent.
+                        ● Custom Tilt Alerts – Set your own maximum tilt limit with visual and sound notifications.
+                        ● Location Info – Shows your current latitude and longitude.
+                        ● Compass – Helps you stay oriented in any environment.
+                        ● Altimeter – Indicates your current altitude.
+                        ● Speedometer – Tracks your speed accurately.
+                        ● Max Tilt Recording – Automatically saves the steepest angles reached.
+                        ● Vehicle Image Editor – Add a picture of your vehicle from the gallery or take a new photo to personalize the app.
+                        
+                        Whether you’re climbing, descending, or exploring the unknown — Off Road Instrumentations gives you the key data to drive smarter and safer.
+                        `,
                 icon: "Images/OffRoad_small.png",
-
-                imagesPortrait: ["Images/head_1.png"],
-                imagesLandscape: []
+                images: ["Images/head_1.png","Images/head_2.png","Images/head_3.png","Images/head_4.png"]
             },
 
             forble: {
                 title: "ForBLE",
-                desc: "Communicate with microcontrollers.",
-                fullDesc: `BLE communication app.`,
+                desc: "This app is designed to communicate with microcontrollers such as Arduino and others.",
+                fullDesc: `This application is designed to communicate with microcontrollers such as Arduino and others. Testing was carried out with Arduino, but communication with other microcontrollers is theoretically possible as well. Since the application sends commands in the form of text.
+                
+                           Bluetooth Low Energy (BLE) is used for connection.`,
                 icon: "Images/ForBLE_small.png",
-
-                imagesPortrait: [],
-                imagesLandscape: ["Images/head_1.png", "Images/head_2.png"]
+                images: ["Images/head_1.png","Images/head_2.png"]
             },
 
             forbike: {
                 title: "ForBike",
-                desc: "Bike app.",
-                fullDesc: `Bike tracking app.`,
-                icon: "Images/ForBike_small.png",
+                desc: "This app can be used as in everyday life and also when training.",
+                fullDesc: `This app can be used as in everyday life and also when training.
+                            1. Speedometer, odometer, max. speed and average speed.
+                               Speedometer can be shown in mph or kph. Distance can be calculated in miles or in kilometers.
+                            2. Trip scene. You can record your way and see it on the map.
+                            3. Stopwatch scene. This app has a very convenient stopwatch which lets you save your lap time in the results after completing the lap just by touching the screen. You will also find a convenient countdown accompanied with sound.
+                            4. Clinometer. With the help of clinometer you can monitor the degree of inclines or declines of the road that you travel on.
+                            5. Altimeter.
+                            6. Results. Your results can be found on the ‘Results’ page. You can share your result. You can also view the animation of your trip.
 
-                imagesPortrait: ["Images/ForBike/bd_1.png", "Images/ForBike/bd_2.png", "Images/ForBike/bd_3.png", "Images/ForBike/bd_4.png", "Images/ForBike/bd_5.png", "Images/ForBike/bd_6.png"],
-                imagesLandscape: ["Images/ForBike/bd_2.png"]
+                            NOTE: Please use the app outdoors, it does not work correctly in enclosed environments(home, office, etc)`,
+                icon: "Images/ForBike_small.png",
+                images: ["Images/ForBike/bd_1.png","Images/ForBike/bd_2.png","Images/ForBike/bd_3.png","Images/ForBike/bd_4.png","Images/ForBike/bd_5.png","Images/ForBike/bd_6.png","Images/ForBike/bd_7.png","Images/ForBike/bd_8.png","Images/ForBike/bd_9.png","Images/ForBike/bd_10.png"]
             },
 
             puzzle: {
                 title: "Family Puzzle",
-                desc: "Puzzle app.",
-                fullDesc: `Puzzle game.`,
-                icon: "Images/Puzzle_small.png",
+                desc: "Enjoy a fun puzzle experience for people of all ages. Turn any photo into a puzzle and challenge yourself, friends or family.",
+                fullDesc: `Family Puzzle is a fun and easy puzzle game for kids and families.
+                           Turn any picture into an interactive jigsaw puzzle — perfect for learning and playing together.
 
-                imagesPortrait: [],
-                imagesLandscape: []
+                           Children can use photos from the gallery, take pictures with the camera, or search for images online using keywords like “cat,” “space,” or “cartoon.” The app encourages creativity, logic, and visual thinking.
+
+                           Features:
+                           ● Create puzzles from any image
+                           ● Take your own photos to use in the game
+                           ● Choose pictures from your photo library
+                           ● Search and download images from the internet
+                           ● Designed for children and parents to enjoy together
+                           
+                           Family Puzzle supports early development, improves concentration, and offers a fun way to spend time with your child.`,
+                icon: "Images/Puzzle_small.png",
+                images: ["Images/head_1.png","Images/head_2.png"]
             },
 
             carmusic: {
                 title: "Car Music",
-                desc: "Music app.",
-                fullDesc: `Music player.`,
+                desc: "This app is designed especially for use in the car, but it can also be used elsewhere.",
+                fullDesc: `Car Music app is created especially to be used in the car, but you can also use it elsewhere. This player can play all the music from your iPod playlist.
+                
+                           This application is very easy to use while behind the wheel, since it has the ability to be controlled with the help of the touch screen, which doesn’t distract you from the road.`,
                 icon: "Images/CarMusic_small.png",
-
-                imagesPortrait: ["Images/head_1.png"],
-                imagesLandscape: ["Images/head_2.png"]
+                images: ["Images/head_1.png","Images/head_2.png"]
             }
         };
 
@@ -309,38 +323,19 @@
         const app = apps[appKey];
 
         if (app) {
-
             document.getElementById("appTitle").innerText = app.title;
             document.getElementById("appDesc").innerText = app.desc;
             document.getElementById("appFullDesc").innerText = app.fullDesc;
             document.getElementById("appIcon").src = app.icon;
 
-            const portraitSection = document.getElementById("portraitSection");
-            const landscapeSection = document.getElementById("landscapeSection");
+            const gallery = document.getElementById("gallery");
 
-            const portraitGallery = document.getElementById("galleryPortrait");
-            const landscapeGallery = document.getElementById("galleryLandscape");
-
-            function addImages(list, container) {
-                list.forEach(src => {
-                    const img = document.createElement("img");
-                    img.src = src;
-                    img.onclick = () => openModal(src);
-                    container.appendChild(img);
-                });
-            }
-
-            if (app.imagesPortrait && app.imagesPortrait.length > 0) {
-                addImages(app.imagesPortrait, portraitGallery);
-            } else {
-                portraitSection.style.display = "none";
-            }
-
-            if (app.imagesLandscape && app.imagesLandscape.length > 0) {
-                addImages(app.imagesLandscape, landscapeGallery);
-            } else {
-                landscapeSection.style.display = "none";
-            }
+            app.images.forEach(src => {
+                const img = document.createElement("img");
+                img.src = src;
+                img.onclick = () => openModal(src);
+                gallery.appendChild(img);
+            });
         }
 
         function openModal(src) {
