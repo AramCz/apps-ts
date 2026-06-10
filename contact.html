@@ -103,13 +103,13 @@
             width: 100%;
             padding: 12px;
             margin-bottom: 20px;
-        
+
             border: 1px solid #ccc;
             border-radius: 6px;
-        
+
             font-size: 16px;
             font-family: Arial, sans-serif;
-        
+
             height: 48px;
         }
 
@@ -154,7 +154,7 @@
     </div>
 
     <!-- Contact form -->
-    <form class="contact-form">
+    <form class="contact-form" id="contactForm">
 
         <label for="name">Name</label>
         <input
@@ -162,6 +162,7 @@
             id="name"
             name="name"
             placeholder="Enter your name"
+            required
         >
 
         <label for="email">Email</label>
@@ -170,26 +171,33 @@
             id="email"
             name="email"
             placeholder="Enter your email"
+            required
         >
 
         <label for="app">Select app</label>
-        <select id="app" name="app">
+        <select
+            id="app"
+            name="app"
+            required
+        >
             <option value="" disabled selected>
                 Select application
             </option>
-            <option value="expedition">Expedition 4x4</option>
-            <option value="offRoad">Off Road Instrumentations</option>
-            <option value="forBike">ForBike</option>
-            <option value="forBle">ForBLE</option>
-            <option value="puzzle">Family Puzzle</option>
-            <option value="carMusic">Car Music</option>
+
+            <option value="Expedition 4x4">Expedition 4x4</option>
+            <option value="Off Road Instrumentations">Off Road Instrumentations</option>
+            <option value="ForBike">ForBike</option>
+            <option value="ForBLE">ForBLE</option>
+            <option value="Family Puzzle">Family Puzzle</option>
+            <option value="Car Music">Car Music</option>
         </select>
-        
+
         <label for="description">Description</label>
         <textarea
             id="description"
             name="description"
             placeholder="Enter your message"
+            required
         ></textarea>
 
         <button type="submit" class="send-button">
@@ -197,6 +205,34 @@
         </button>
 
     </form>
+
+    <script>
+
+        document.getElementById("contactForm").addEventListener("submit", function(e) {
+
+            e.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const app = document.getElementById("app").value;
+            const description = document.getElementById("description").value.trim();
+
+            const subject = "Apps Touch Screen Contact Form";
+
+            const body =
+                "Name: " + name + "\n\n" +
+                "Email: " + email + "\n\n" +
+                "Application: " + app + "\n\n" +
+                "Description:\n" +
+                description;
+
+            window.location.href =
+                "mailto:appstouchscreen@gmail.com" +
+                "?subject=" + encodeURIComponent(subject) +
+                "&body=" + encodeURIComponent(body);
+        });
+
+    </script>
 
 </body>
 </html>
