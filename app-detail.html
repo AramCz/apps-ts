@@ -228,9 +228,18 @@
 
     <!-- DETAILS -->
     <div class="details">
-        <h2>About this app</h2>
+        <h2></h2>
         <p id="appFullDesc"></p>
     </div>
+    
+    <div
+        id="videosContainer"
+        style="
+            max-width:750px;
+            margin:40px auto;
+            text-align:left;
+        "
+    ></div>
 
     <!-- GALLERIES -->
     <div class="gallery-section" id="portraitSection">
@@ -273,7 +282,7 @@
                           • Optional off-road tools are available as in-app purchases.
                         `,
                 icon: "Images/expedition_small.png",
-
+                videos: [],
                 imagesPortrait: [
                     "Images/Expedition/1.png",
                     "Images/Expedition/2.png",
@@ -322,7 +331,7 @@
                         Whether you’re climbing, descending, or exploring the unknown — Off Road Instrumentations gives you the key data to drive smarter and safer.
                         `,
                 icon: "Images/OffRoad_small.png",
-
+                videos: [],
                 imagesPortrait: [],
                 imagesLandscape: [
                     "Images/OffRoad/3.png",
@@ -351,7 +360,16 @@
                 
                            Bluetooth Low Energy (BLE) is used for connection.`,
                 icon: "Images/ForBLE_small.png",
-
+                videos: [
+                    {
+                        title: "Introduction Video",
+                        url: "https://www.youtube.com/embed/VIDEO_ID_1"
+                    },
+                    {
+                        title: "Feature Demo",
+                        url: "https://www.youtube.com/embed/VIDEO_ID_2"
+                    }
+                ],
                 imagesPortrait: [],
                 imagesLandscape: [
                     "Images/ForBLE/ble_1.png",
@@ -381,7 +399,7 @@
 
                             NOTE: Please use the app outdoors, it does not work correctly in enclosed environments(home, office, etc)`,
                 icon: "Images/ForBike_small.png",
-
+                videos: [],
                 imagesPortrait: [
                     "Images/ForBike/bd_1.png", 
                     "Images/ForBike/bd_2.png", 
@@ -416,7 +434,7 @@
                            
                            Family Puzzle supports early development, improves concentration, and offers a fun way to spend time with your child.`,
                 icon: "Images/Puzzle_small.png",
-
+                videos: [],
                 imagesPortrait: ["Images/Puzzle/pzl_1.png", "Images/Puzzle/pzl_2.png", "Images/Puzzle/pzl_3.png", "Images/Puzzle/pzl_4.png"],
                 imagesLandscape: ["Images/Puzzle/pzl_1_land.png", "Images/Puzzle/pzl_2_land.png", "Images/Puzzle/pzl_3_land.png"]
             },
@@ -429,7 +447,7 @@
                 
                            This application is very easy to use while behind the wheel, since it has the ability to be controlled with the help of the touch screen, which doesn’t distract you from the road.`,
                 icon: "Images/CarMusic_small.png",
-
+                videos: [],
                 imagesPortrait: ["Images/CarMusic/music_1.png", "Images/CarMusic/music_2.png", "Images/CarMusic/music_3.png"],
                 imagesLandscape: ["Images/CarMusic/music_1_land.png"]
             }
@@ -447,6 +465,29 @@
             document.getElementById("appIcon").src = app.icon;
             document.getElementById("appStoreButton").href = app.appStoreUrl;
 
+            const videosContainer = document.getElementById("videosContainer");
+            if (app.videos && app.videos.length > 0) {
+            
+                app.videos.forEach(video => {
+            
+                    const title = document.createElement("h2");
+                    title.innerText = video.title;
+                    title.style.marginTop = "40px";
+                    title.style.marginBottom = "15px";
+            
+                    const iframe = document.createElement("iframe");
+            
+                    iframe.src = video.url;
+                    iframe.width = "100%";
+                    iframe.height = "450";
+                    iframe.style.border = "none";
+                    iframe.allowFullscreen = true;
+            
+                    videosContainer.appendChild(title);
+                    videosContainer.appendChild(iframe);
+                });
+            }
+            
             const portraitSection = document.getElementById("portraitSection");
             const landscapeSection = document.getElementById("landscapeSection");
 
