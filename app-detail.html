@@ -504,7 +504,7 @@
 
             document.getElementById("appTitle").innerText = app.title;
             document.getElementById("appDesc").innerText = app.desc;
-            document.getElementById("appFullDesc").innerText = app.fullDesc;
+            document.getElementById("appFullDesc").innerHTML = app.fullDesc; 
             document.getElementById("appIcon").src = app.icon;
             document.getElementById("appStoreButton").href = app.appStoreUrl;
 
