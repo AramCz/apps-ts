@@ -118,6 +118,15 @@
             color: #777;
             line-height: 1.3;
         }
+
+        .app-link {
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .app-link:hover .app-item {
+            background: rgba(255,255,255,0.85);
+        }
     </style>
 </head>
 
@@ -138,10 +147,17 @@
     <div class="apps-list">
 
         <div class="app-item">
-            <a href="app-detail.html?app=expedition">
-                <button class="app-icon">
-                    <img src="Images/expedition_small.png">
-                </button>
+            <a href="app-detail.html?app=expedition" class="app-link">
+                <div class="app-item">
+                    <div class="app-icon">
+                        <img src="Images/expedition_small.png">
+                    </div>
+            
+                    <div class="app-info">
+                        <h3>Expedition 4x4</h3>
+                        <p>Organize groups for expeditions, competitions or other purposes, track group participants and optionally take part in them.</p>
+                    </div>
+                </div>
             </a>
             <div class="app-info">
                 <h3>Expedition 4x4</h3>
